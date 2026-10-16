@@ -1643,6 +1643,90 @@ impl UIViewController {
     );
 }
 
+/// A behavior that determines whether the vertical bar is used.
+///
+/// Return this type from
+/// ``UIViewController/preferredVerticalBarBehavior`` to apply the
+/// preferred behavior.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiverticalbarbehavior?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct UIVerticalBarBehavior(pub NSInteger);
+impl UIVerticalBarBehavior {
+    /// The system determines whether the vertical bar is rendered.
+    #[doc(alias = "UIVerticalBarBehaviorAutomatic")]
+    pub const Automatic: Self = Self(0);
+    /// The vertical bar is disabled.
+    ///
+    /// Bar content falls back to the standard horizontal top and bottom
+    /// bars, and the vertical status bar reverts to the horizontal axis.
+    #[doc(alias = "UIVerticalBarBehaviorDisabled")]
+    pub const Disabled: Self = Self(1);
+}
+
+unsafe impl Encode for UIVerticalBarBehavior {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for UIVerticalBarBehavior {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+#[cfg(feature = "UIResponder")]
+impl UIViewController {
+    extern_methods!(
+        /// The vertical bar behavior that this view controller prefers.
+        ///
+        /// Override this property to opt out of the vertical bar. Return
+        /// `UIVerticalBarBehaviorDisabled` to hide the vertical bar. Defaults to
+        /// `UIVerticalBarBehaviorAutomatic`.
+        ///
+        /// Disable the vertical bar only for UIs that are better served by
+        /// horizontal bars, such as a fullscreen video player with toolbar
+        /// controls or a non-scrolling layout like a calculator. Treat it as a
+        /// stable choice: avoid changing it frequently as the user navigates, and
+        /// don't toggle it for a single view controller as a function of that
+        /// view's state. To hide the bars and status bar on a given screen rather
+        /// than change the layout, use the visibility APIs instead.
+        ///
+        /// When the resolved configuration changes, the system animates the
+        /// transition: content reflows to or from the horizontal bars while the
+        /// status bar changes axis and the leading or trailing safe area inset for
+        /// the vertical bar is added or removed.
+        #[unsafe(method(preferredVerticalBarBehavior))]
+        #[unsafe(method_family = none)]
+        pub fn preferredVerticalBarBehavior(&self) -> UIVerticalBarBehavior;
+
+        /// Which child view controller, if any, should control the vertical bar
+        /// behavior.
+        ///
+        /// Return a child to defer the configuration to it, or `nil` to use the
+        /// configuration provided by this view controller. The system container
+        /// view controllers forward to their active content by default —
+        /// `UINavigationController` to its top view controller, `UITabBarController`
+        /// to its selected view controller — so a content view controller's
+        /// preference flows up to the window of the app or the nearest
+        /// presentation.
+        #[unsafe(method(childViewControllerForPreferredVerticalBarBehavior))]
+        #[unsafe(method_family = none)]
+        pub fn childViewControllerForPreferredVerticalBarBehavior(
+            &self,
+        ) -> Option<Retained<UIViewController>>;
+
+        /// Signals to the system that the preferred vertical bar configuration,
+        /// such as its behavior, has changed.
+        ///
+        /// Call this method following changes to any state that affects the return
+        /// values of methods like ``preferredVerticalBarBehavior`` or
+        /// ``childViewControllerForPreferredVerticalBarBehavior``.
+        #[unsafe(method(setNeedsUpdateOfVerticalBarConfiguration))]
+        #[unsafe(method_family = none)]
+        pub fn setNeedsUpdateOfVerticalBarConfiguration(&self);
+    );
+}
+
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uipreviewactionitem?language=objc)
     pub unsafe trait UIPreviewActionItem: NSObjectProtocol + MainThreadOnly {

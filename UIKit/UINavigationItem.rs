@@ -124,6 +124,42 @@ unsafe impl RefEncode for UINavigationItemStyle {
     const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
 }
 
+/// How bars compress when different types of bars are hosted together
+/// and space is constrained.
+///
+/// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiverticalbarcompressionbehavior?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct UIVerticalBarCompressionBehavior(pub NSInteger);
+impl UIVerticalBarCompressionBehavior {
+    /// The automatic compression behavior.
+    ///
+    /// On iOS, this behavior prefers the tab bar.
+    #[doc(alias = "UIVerticalBarCompressionBehaviorAutomatic")]
+    pub const Automatic: Self = Self(0);
+    /// A compression behavior that prefers keeping bar items visible.
+    ///
+    /// The tab bar will compress before bar items when space is
+    /// constrained.
+    #[doc(alias = "UIVerticalBarCompressionBehaviorPrefersBarItems")]
+    pub const PrefersBarItems: Self = Self(1);
+    /// A compression behavior that prefers keeping the tab bar visible.
+    ///
+    /// Bar items will compress before the tab bar when space is
+    /// constrained.
+    #[doc(alias = "UIVerticalBarCompressionBehaviorPrefersTabBar")]
+    pub const PrefersTabBar: Self = Self(2);
+}
+
+unsafe impl Encode for UIVerticalBarCompressionBehavior {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for UIVerticalBarCompressionBehavior {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_protocol!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uinavigationitemrenamedelegate?language=objc)
     pub unsafe trait UINavigationItemRenameDelegate:
@@ -885,5 +921,26 @@ impl UINavigationItem {
         #[unsafe(method(setNavigationBarMinimization:))]
         #[unsafe(method_family = none)]
         pub fn setNavigationBarMinimization(&self, navigation_bar_minimization: &UIBarMinimization);
+    );
+}
+
+/// VerticalBar.
+impl UINavigationItem {
+    extern_methods!(
+        /// When the tab bar and navigation/toolbar items are both rendered together
+        /// in the vertical bar, this property controls which items compress first.
+        ///
+        /// The default value is `UIVerticalBarCompressionBehaviorAutomatic`.
+        #[unsafe(method(verticalBarCompressionBehavior))]
+        #[unsafe(method_family = none)]
+        pub fn verticalBarCompressionBehavior(&self) -> UIVerticalBarCompressionBehavior;
+
+        /// Setter for [`verticalBarCompressionBehavior`][Self::verticalBarCompressionBehavior].
+        #[unsafe(method(setVerticalBarCompressionBehavior:))]
+        #[unsafe(method_family = none)]
+        pub fn setVerticalBarCompressionBehavior(
+            &self,
+            vertical_bar_compression_behavior: UIVerticalBarCompressionBehavior,
+        );
     );
 }

@@ -348,6 +348,18 @@ extern "C" {
     pub static UIWindowSceneSessionRoleAssistiveAccessApplication: &'static UISceneSessionRole;
 }
 
+extern "C" {
+    /// A session role for scenes that present content during camera capture.
+    ///
+    /// The system assigns this role automatically to scenes created from a camera capture scene accessory
+    /// registration. Clients do not set it directly; it is provided so a scene's purpose can be identified
+    /// at runtime.
+    ///
+    /// See also [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscenesessionrolecameracaptureaccessory?language=objc)
+    #[cfg(feature = "UISceneDefinitions")]
+    pub static UIWindowSceneSessionRoleCameraCaptureAccessory: &'static UISceneSessionRole;
+}
+
 /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uiwindowscenedismissalanimation?language=objc)
 // NS_ENUM
 #[repr(transparent)]

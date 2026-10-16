@@ -65,6 +65,44 @@ impl UISceneAccessory {
             scene_configuration: &UISceneConfiguration,
             user_info: &AnyObject,
         ) -> Retained<Self>;
+
+        #[cfg(feature = "UISceneConfiguration")]
+        /// Creates a scene accessory for presenting content during camera capture.
+        ///
+        /// The content may be presented while the app is in the foreground and has an active camera capture session.
+        /// The system determines whether and where to present it. The content can be interactive.
+        ///
+        /// - Parameter sceneConfiguration: A scene configuration value with a delegate type defined for it.
+        #[unsafe(method(cameraCaptureSceneAccessoryWithConfiguration:))]
+        #[unsafe(method_family = none)]
+        pub fn cameraCaptureSceneAccessoryWithConfiguration(
+            scene_configuration: &UISceneConfiguration,
+        ) -> Retained<Self>;
+
+        #[cfg(feature = "UISceneConfiguration")]
+        /// Creates a scene accessory for presenting content during camera capture, passing additional context to the
+        /// scene delegate.
+        ///
+        /// The content may be presented while the app is in the foreground and has an active camera capture session.
+        /// The system determines whether and where to present it. The content can be interactive.
+        ///
+        /// This variant accepts a `userInfo` object to pass additional context to the scene delegate upon connection.
+        /// The `userInfo` object is accessible in the corresponding scene via
+        /// ``UISceneConnectionOptions.sceneAccessoryUserInfo``.
+        ///
+        /// - Parameters:
+        /// - sceneConfiguration: A scene configuration value with a delegate type defined for it.
+        /// - userInfo: An object that can be used to pass additional context to the scene delegate upon connection.
+        ///
+        /// # Safety
+        ///
+        /// `user_info` should be of the correct type.
+        #[unsafe(method(cameraCaptureSceneAccessoryWithConfiguration:userInfo:))]
+        #[unsafe(method_family = none)]
+        pub unsafe fn cameraCaptureSceneAccessoryWithConfiguration_userInfo(
+            scene_configuration: &UISceneConfiguration,
+            user_info: &AnyObject,
+        ) -> Retained<Self>;
     );
 }
 

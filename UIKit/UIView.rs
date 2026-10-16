@@ -1906,6 +1906,31 @@ impl UIView {
     );
 }
 
+/// ReservedRegion.
+#[cfg(feature = "UIResponder")]
+impl UIView {
+    extern_methods!(
+        #[cfg(feature = "UIViewReservedRegion")]
+        /// Returns the reserved regions of a given kind.
+        #[unsafe(method(reservedRegionsOfKind:))]
+        #[unsafe(method_family = none)]
+        pub fn reservedRegionsOfKind(
+            &self,
+            kind: &UIViewReservedRegionKind,
+        ) -> Retained<NSArray<UIViewReservedRegion>>;
+
+        #[cfg(feature = "UIViewReservedRegion")]
+        /// Returns the reserved regions of a given kind and options.
+        #[unsafe(method(reservedRegionsOfKind:options:))]
+        #[unsafe(method_family = none)]
+        pub fn reservedRegionsOfKind_options(
+            &self,
+            kind: &UIViewReservedRegionKind,
+            options: UIViewReservedRegionQueryOptions,
+        ) -> Retained<NSArray<UIViewReservedRegion>>;
+    );
+}
+
 /// CornerConfiguration.
 #[cfg(feature = "UIResponder")]
 impl UIView {

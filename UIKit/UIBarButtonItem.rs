@@ -143,6 +143,36 @@ extern "C" {
     pub static UIBarButtonItemVisibilityPriorityHigh: UIBarButtonItemVisibilityPriority;
 }
 
+/// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonitemaxisbehavior?language=objc)
+// NS_ENUM
+#[repr(transparent)]
+#[derive(Clone, Copy, Debug, PartialEq, Eq, Hash, PartialOrd, Ord, Default)]
+pub struct UIBarButtonItemAxisBehavior(pub NSInteger);
+impl UIBarButtonItemAxisBehavior {
+    /// The automatic behavior. The system infers the
+    /// supported axes based on the contents of the item.
+    #[doc(alias = "UIBarButtonItemAxisBehaviorAutomatic")]
+    pub const Automatic: Self = Self(0);
+    /// The item only supports horizontal bars. If an item only supports
+    /// horizontal bars and no horizontal bars are present, the item is
+    /// not shown.
+    #[doc(alias = "UIBarButtonItemAxisBehaviorHorizontalOnly")]
+    pub const HorizontalOnly: Self = Self(1);
+    /// The item supports both horizontal and vertical bars,
+    /// and prefers a vertical placement when both horizontal
+    /// and vertical bars are present
+    #[doc(alias = "UIBarButtonItemAxisBehaviorVerticalPreferred")]
+    pub const VerticalPreferred: Self = Self(2);
+}
+
+unsafe impl Encode for UIBarButtonItemAxisBehavior {
+    const ENCODING: Encoding = NSInteger::ENCODING;
+}
+
+unsafe impl RefEncode for UIBarButtonItemAxisBehavior {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 extern_class!(
     /// [Apple's documentation](https://developer.apple.com/documentation/uikit/uibarbuttonitem?language=objc)
     #[unsafe(super(UIBarItem, NSObject))]
@@ -538,12 +568,26 @@ impl UIBarButtonItem {
         #[unsafe(method_family = none)]
         pub fn setPaddingRemoved(&self, padding_removed: bool);
 
+        /// The bar axis behavior of the item.
+        ///
+        /// The default value is `UIBarButtonItemAxisBehaviorAutomatic`.
+        #[unsafe(method(axisBehavior))]
+        #[unsafe(method_family = none)]
+        pub fn axisBehavior(&self) -> UIBarButtonItemAxisBehavior;
+
+        /// Setter for [`axisBehavior`][Self::axisBehavior].
+        #[unsafe(method(setAxisBehavior:))]
+        #[unsafe(method_family = none)]
+        pub fn setAxisBehavior(&self, axis_behavior: UIBarButtonItemAxisBehavior);
+
         #[cfg(feature = "UIMenuElement")]
         /// A UIMenuElement that should substitute for the UIBarButtonItem when displayed in a menu.
         #[unsafe(method(menuRepresentation))]
         #[unsafe(method_family = none)]
         pub fn menuRepresentation(&self) -> Option<Retained<UIMenuElement>>;
+    );
 
+    extern_methods!(
         #[cfg(feature = "UIMenuElement")]
         /// Setter for [`menuRepresentation`][Self::menuRepresentation].
         ///
@@ -565,9 +609,7 @@ impl UIBarButtonItem {
         #[unsafe(method(hidesSharedBackground))]
         #[unsafe(method_family = none)]
         pub fn hidesSharedBackground(&self) -> bool;
-    );
 
-    extern_methods!(
         /// Setter for [`hidesSharedBackground`][Self::hidesSharedBackground].
         #[unsafe(method(setHidesSharedBackground:))]
         #[unsafe(method_family = none)]

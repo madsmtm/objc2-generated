@@ -213,6 +213,9 @@ mod __UIApplication;
 #[cfg(feature = "UIApplicationShortcutItem")]
 #[path = "UIApplicationShortcutItem.rs"]
 mod __UIApplicationShortcutItem;
+#[cfg(feature = "UIArrangementViewController")]
+#[path = "UIArrangementViewController.rs"]
+mod __UIArrangementViewController;
 #[cfg(feature = "UIAttachmentBehavior")]
 #[path = "UIAttachmentBehavior.rs"]
 mod __UIAttachmentBehavior;
@@ -585,6 +588,12 @@ mod __UIGuidedAccess;
 #[cfg(feature = "UIGuidedAccessRestrictions")]
 #[path = "UIGuidedAccessRestrictions.rs"]
 mod __UIGuidedAccessRestrictions;
+#[cfg(feature = "UIHinge")]
+#[path = "UIHinge.rs"]
+mod __UIHinge;
+#[cfg(feature = "UIHingeInteraction")]
+#[path = "UIHingeInteraction.rs"]
+mod __UIHingeInteraction;
 #[cfg(feature = "UIHoverEffect")]
 #[path = "UIHoverEffect.rs"]
 mod __UIHoverEffect;
@@ -768,6 +777,9 @@ mod __UIOpenURLContext;
 #[cfg(feature = "UIOrientation")]
 #[path = "UIOrientation.rs"]
 mod __UIOrientation;
+#[cfg(feature = "UIOverlayArrangement")]
+#[path = "UIOverlayArrangement.rs"]
+mod __UIOverlayArrangement;
 #[cfg(feature = "UIPageControl")]
 #[path = "UIPageControl.rs"]
 mod __UIPageControl;
@@ -1020,6 +1032,9 @@ mod __UISmartReplySuggestion;
 #[cfg(feature = "UISnapBehavior")]
 #[path = "UISnapBehavior.rs"]
 mod __UISnapBehavior;
+#[cfg(feature = "UISplitArrangement")]
+#[path = "UISplitArrangement.rs"]
+mod __UISplitArrangement;
 #[cfg(feature = "UISplitViewController")]
 #[path = "UISplitViewController.rs"]
 mod __UISplitViewController;
@@ -1257,6 +1272,9 @@ mod __UIUserActivity;
 #[cfg(feature = "UIUserNotificationSettings")]
 #[path = "UIUserNotificationSettings.rs"]
 mod __UIUserNotificationSettings;
+#[cfg(feature = "UIVerticalBarEdge")]
+#[path = "UIVerticalBarEdge.rs"]
+mod __UIVerticalBarEdge;
 #[cfg(feature = "UIVibrancyEffect")]
 #[path = "UIVibrancyEffect.rs"]
 mod __UIVibrancyEffect;
@@ -1290,6 +1308,9 @@ mod __UIViewLayoutRegion;
 #[cfg(feature = "UIViewPropertyAnimator")]
 #[path = "UIViewPropertyAnimator.rs"]
 mod __UIViewPropertyAnimator;
+#[cfg(feature = "UIViewReservedRegion")]
+#[path = "UIViewReservedRegion.rs"]
+mod __UIViewReservedRegion;
 #[cfg(feature = "UIVisualEffect")]
 #[path = "UIVisualEffect.rs"]
 mod __UIVisualEffect;
@@ -2488,6 +2509,18 @@ pub use self::__UIApplicationShortcutItem::UIApplicationShortcutIconType;
 pub use self::__UIApplicationShortcutItem::UIApplicationShortcutItem;
 #[cfg(feature = "UIApplicationShortcutItem")]
 pub use self::__UIApplicationShortcutItem::UIMutableApplicationShortcutItem;
+#[cfg(feature = "UIArrangementViewController")]
+pub use self::__UIArrangementViewController::UIArrangement;
+#[cfg(all(
+    feature = "UIArrangementViewController",
+    feature = "UIResponder",
+    feature = "UIViewController"
+))]
+pub use self::__UIArrangementViewController::UIArrangementViewController;
+#[cfg(feature = "UIArrangementViewController")]
+pub use self::__UIArrangementViewController::UIArrangementViewControllerViewPlacement;
+#[cfg(feature = "UIArrangementViewController")]
+pub use self::__UIArrangementViewController::UIArrangementViewState;
 #[cfg(all(feature = "UIAttachmentBehavior", feature = "UIDynamicBehavior"))]
 pub use self::__UIAttachmentBehavior::UIAttachmentBehavior;
 #[cfg(feature = "UIAttachmentBehavior")]
@@ -2514,6 +2547,8 @@ pub use self::__UIBandSelectionInteraction::UIBandSelectionInteractionState;
 pub use self::__UIBarAppearance::UIBarAppearance;
 #[cfg(all(feature = "UIBarButtonItem", feature = "UIBarItem"))]
 pub use self::__UIBarButtonItem::UIBarButtonItem;
+#[cfg(feature = "UIBarButtonItem")]
+pub use self::__UIBarButtonItem::UIBarButtonItemAxisBehavior;
 #[cfg(feature = "UIBarButtonItem")]
 pub use self::__UIBarButtonItem::UIBarButtonItemStyle;
 #[cfg(feature = "UIBarButtonItem")]
@@ -3730,6 +3765,14 @@ pub use self::__UIGuidedAccess::UIGuidedAccessErrorDomain;
 pub use self::__UIGuidedAccess::UIGuidedAccessRestrictionDelegate;
 #[cfg(feature = "UIGuidedAccess")]
 pub use self::__UIGuidedAccess::UIGuidedAccessRestrictionState;
+#[cfg(feature = "UIHinge")]
+pub use self::__UIHinge::UIHinge;
+#[cfg(feature = "UIHinge")]
+pub use self::__UIHinge::UIHingeStatus;
+#[cfg(feature = "UIHingeInteraction")]
+pub use self::__UIHingeInteraction::UIHingeInteraction;
+#[cfg(feature = "UIHingeInteraction")]
+pub use self::__UIHingeInteraction::UIHingeInteractionUpdate;
 #[cfg(feature = "UIHoverEffect")]
 pub use self::__UIHoverEffect::UIHoverAutomaticEffect;
 #[cfg(feature = "UIHoverEffect")]
@@ -4188,6 +4231,8 @@ pub use self::__UINavigationItem::UINavigationItemRenameDelegate;
 pub use self::__UINavigationItem::UINavigationItemSearchBarPlacement;
 #[cfg(feature = "UINavigationItem")]
 pub use self::__UINavigationItem::UINavigationItemStyle;
+#[cfg(feature = "UINavigationItem")]
+pub use self::__UINavigationItem::UIVerticalBarCompressionBehavior;
 #[cfg(feature = "UINib")]
 pub use self::__UINib::UINib;
 #[cfg(feature = "UINibLoading")]
@@ -4211,6 +4256,13 @@ pub use self::__UIOrientation::UIDeviceOrientation;
 pub use self::__UIOrientation::UIInterfaceOrientation;
 #[cfg(feature = "UIOrientation")]
 pub use self::__UIOrientation::UIInterfaceOrientationMask;
+#[cfg(all(
+    feature = "UIArrangementViewController",
+    feature = "UIOverlayArrangement"
+))]
+pub use self::__UIOverlayArrangement::UIOverlayArrangement;
+#[cfg(feature = "UIOverlayArrangement")]
+pub use self::__UIOverlayArrangement::UIOverlayArrangementViewProperties;
 #[cfg(all(
     feature = "UIControl",
     feature = "UIPageControl",
@@ -4838,6 +4890,17 @@ pub use self::__UISliderTrackConfiguration::UISliderTrackConfiguration;
 pub use self::__UISmartReplySuggestion::UISmartReplySuggestion;
 #[cfg(all(feature = "UIDynamicBehavior", feature = "UISnapBehavior"))]
 pub use self::__UISnapBehavior::UISnapBehavior;
+#[cfg(all(
+    feature = "UIArrangementViewController",
+    feature = "UISplitArrangement"
+))]
+pub use self::__UISplitArrangement::UISplitArrangement;
+#[cfg(feature = "UISplitArrangement")]
+pub use self::__UISplitArrangement::UISplitArrangementDimension;
+#[cfg(feature = "UISplitArrangement")]
+pub use self::__UISplitArrangement::UISplitArrangementDimensionRange;
+#[cfg(feature = "UISplitArrangement")]
+pub use self::__UISplitArrangement::UISplitArrangementViewProperties;
 #[cfg(all(
     feature = "UIResponder",
     feature = "UISplitViewController",
@@ -5722,6 +5785,8 @@ pub use self::__UIUserNotificationSettings::UIUserNotificationSettings;
 pub use self::__UIUserNotificationSettings::UIUserNotificationTextInputActionButtonTitleKey;
 #[cfg(feature = "UIUserNotificationSettings")]
 pub use self::__UIUserNotificationSettings::UIUserNotificationType;
+#[cfg(feature = "UIVerticalBarEdge")]
+pub use self::__UIVerticalBarEdge::UIVerticalBarEdge;
 #[cfg(all(feature = "UIVibrancyEffect", feature = "UIVisualEffect"))]
 pub use self::__UIVibrancyEffect::UIVibrancyEffect;
 #[cfg(feature = "UIVibrancyEffect")]
@@ -5789,6 +5854,8 @@ pub use self::__UIViewController::UIPreviewActionGroup;
 pub use self::__UIViewController::UIPreviewActionItem;
 #[cfg(feature = "UIViewController")]
 pub use self::__UIViewController::UIPreviewActionStyle;
+#[cfg(feature = "UIViewController")]
+pub use self::__UIViewController::UIVerticalBarBehavior;
 #[cfg(all(feature = "UIResponder", feature = "UIViewController"))]
 pub use self::__UIViewController::UIViewController;
 #[cfg(feature = "UIViewController")]
@@ -5847,6 +5914,14 @@ pub use self::__UIViewLayoutRegion::UIViewLayoutRegion;
 pub use self::__UIViewLayoutRegion::UIViewLayoutRegionAdaptivityAxis;
 #[cfg(feature = "UIViewPropertyAnimator")]
 pub use self::__UIViewPropertyAnimator::UIViewPropertyAnimator;
+#[cfg(feature = "UIViewReservedRegion")]
+pub use self::__UIViewReservedRegion::UIViewReservedRegion;
+#[cfg(feature = "UIViewReservedRegion")]
+pub use self::__UIViewReservedRegion::UIViewReservedRegionIdentifier;
+#[cfg(feature = "UIViewReservedRegion")]
+pub use self::__UIViewReservedRegion::UIViewReservedRegionKind;
+#[cfg(feature = "UIViewReservedRegion")]
+pub use self::__UIViewReservedRegion::UIViewReservedRegionQueryOptions;
 #[cfg(feature = "UIVisualEffect")]
 pub use self::__UIVisualEffect::UIColorEffect;
 #[cfg(feature = "UIVisualEffect")]
@@ -5931,6 +6006,8 @@ pub use self::__UIWindowScene::UIWindowSceneDismissalAnimation;
 pub use self::__UIWindowScene::UIWindowSceneSessionRoleApplication;
 #[cfg(all(feature = "UISceneDefinitions", feature = "UIWindowScene"))]
 pub use self::__UIWindowScene::UIWindowSceneSessionRoleAssistiveAccessApplication;
+#[cfg(all(feature = "UISceneDefinitions", feature = "UIWindowScene"))]
+pub use self::__UIWindowScene::UIWindowSceneSessionRoleCameraCaptureAccessory;
 #[cfg(all(feature = "UISceneDefinitions", feature = "UIWindowScene"))]
 pub use self::__UIWindowScene::UIWindowSceneSessionRoleExternalDisplay;
 #[cfg(all(feature = "UISceneDefinitions", feature = "UIWindowScene"))]

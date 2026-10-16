@@ -2,6 +2,8 @@
 //! DO NOT EDIT
 use core::ptr::NonNull;
 use objc2::__framework_prelude::*;
+#[cfg(feature = "objc2-core-foundation")]
+use objc2_core_foundation::*;
 
 use crate::*;
 
@@ -56,6 +58,28 @@ impl UIViewLayoutRegion {
         #[unsafe(method_family = none)]
         pub fn readableContentLayoutRegionWithCornerAdaptation(
             adaptivity_axis: UIViewLayoutRegionAdaptivityAxis,
+        ) -> Retained<UIViewLayoutRegion>;
+
+        #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
+        /// Returns a bar layout region of a given extent on a given edge.
+        ///
+        /// Note: Only a single edge is allowed per region.
+        #[unsafe(method(layoutRegionForBarOnEdge:extent:))]
+        #[unsafe(method_family = none)]
+        pub fn layoutRegionForBarOnEdge_extent(
+            edge: UIRectEdge,
+            extent: CGFloat,
+        ) -> Retained<UIViewLayoutRegion>;
+
+        #[cfg(all(feature = "UIGeometry", feature = "objc2-core-foundation"))]
+        /// Returns a bar layout region of a given extent on a given directional edge.
+        ///
+        /// Note: Only a single edge is allowed per region.
+        #[unsafe(method(layoutRegionForBarOnDirectionalEdge:extent:))]
+        #[unsafe(method_family = none)]
+        pub fn layoutRegionForBarOnDirectionalEdge_extent(
+            edge: NSDirectionalRectEdge,
+            extent: CGFloat,
         ) -> Retained<UIViewLayoutRegion>;
     );
 }
