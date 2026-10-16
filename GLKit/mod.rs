@@ -127,20 +127,6 @@ pub use self::__GLKEffectPropertyTransform::GLKEffectPropertyTransform;
 #[cfg(all(feature = "GLKEffects", feature = "objc2-open-gl"))]
 #[cfg(target_os = "macos")]
 pub use self::__GLKEffects::GLKVertexAttrib;
-#[cfg(feature = "GLKMathTypes")]
-pub use self::__GLKMathTypes::GLKMatrix2;
-#[cfg(feature = "GLKMathTypes")]
-pub use self::__GLKMathTypes::GLKMatrix3;
-#[cfg(feature = "GLKMathTypes")]
-pub use self::__GLKMathTypes::GLKMatrix4;
-#[cfg(feature = "GLKMathTypes")]
-pub use self::__GLKMathTypes::GLKQuaternion;
-#[cfg(feature = "GLKMathTypes")]
-pub use self::__GLKMathTypes::GLKVector2;
-#[cfg(feature = "GLKMathTypes")]
-pub use self::__GLKMathTypes::GLKVector3;
-#[cfg(feature = "GLKMathTypes")]
-pub use self::__GLKMathTypes::GLKVector4;
 #[cfg(all(feature = "GLKMathTypes", feature = "GLKMathUtils"))]
 pub use self::__GLKMathUtils::GLKMathProject;
 #[cfg(all(feature = "GLKMathTypes", feature = "GLKMathUtils"))]
