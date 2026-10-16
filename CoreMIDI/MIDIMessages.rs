@@ -667,17 +667,748 @@ pub static kMIDI1UPMaxSysexSize: u8 = 6;
 
 // TODO: pub fn MIDI2FlexDataMessage(group: MIDIUInteger4,format: MIDIUInteger2,address: MIDIUInteger2,channel: MIDIUInteger4,status_bank: u8,status: u8,data1: u32,data2: u32,data3: u32,) -> MIDIMessage_128;
 
+/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiuniversalmessage_anonymous_utility_anonymous?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub union MIDIUniversalMessage_anonymous_utility_anonymous {
+    /// active when status is kMIDIUtilityStatusJitterReductionClock
+    pub jitterReductionClock: u16,
+    /// active when status is kMIDIUtilityStatusJitterReductionTimestamp
+    pub jitterReductionTimestamp: u16,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MIDIUniversalMessage_anonymous_utility_anonymous {
+    const ENCODING: Encoding = Encoding::Union("?", &[<u16>::ENCODING, <u16>::ENCODING]);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MIDIUniversalMessage_anonymous_utility_anonymous {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiuniversalmessage_anonymous_utility?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct MIDIUniversalMessage_anonymous_utility {
+    /// determines which variant is active
+    pub status: MIDIUtilityStatus,
+    pub anonymous: MIDIUniversalMessage_anonymous_utility_anonymous,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MIDIUniversalMessage_anonymous_utility {
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <MIDIUtilityStatus>::ENCODING,
+            <MIDIUniversalMessage_anonymous_utility_anonymous>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MIDIUniversalMessage_anonymous_utility {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiuniversalmessage_anonymous_system_anonymous?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub union MIDIUniversalMessage_anonymous_system_anonymous {
+    /// active when status is kMIDIStatusMTC
+    pub timeCode: u8,
+    /// active when status is kMIDIStatusSongPosPointer
+    pub songPositionPointer: u16,
+    /// active when status is kMIDIStatusSongSelect
+    pub songSelect: u8,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MIDIUniversalMessage_anonymous_system_anonymous {
+    const ENCODING: Encoding =
+        Encoding::Union("?", &[<u8>::ENCODING, <u16>::ENCODING, <u8>::ENCODING]);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MIDIUniversalMessage_anonymous_system_anonymous {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiuniversalmessage_anonymous_system?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct MIDIUniversalMessage_anonymous_system {
+    /// determines which variant is active
+    pub status: MIDISystemStatus,
+    pub anonymous: MIDIUniversalMessage_anonymous_system_anonymous,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MIDIUniversalMessage_anonymous_system {
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <MIDISystemStatus>::ENCODING,
+            <MIDIUniversalMessage_anonymous_system_anonymous>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MIDIUniversalMessage_anonymous_system {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiuniversalmessage_anonymous_channelvoice1_anonymous_note?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
+pub struct MIDIUniversalMessage_anonymous_channelVoice1_anonymous_note {
+    /// 7 bit note number
+    pub number: u8,
+    /// 7 bit note velocity
+    pub velocity: u8,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MIDIUniversalMessage_anonymous_channelVoice1_anonymous_note {
+    const ENCODING: Encoding = Encoding::Struct("?", &[<u8>::ENCODING, <u8>::ENCODING]);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MIDIUniversalMessage_anonymous_channelVoice1_anonymous_note {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiuniversalmessage_anonymous_channelvoice1_anonymous_polypressure?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
+pub struct MIDIUniversalMessage_anonymous_channelVoice1_anonymous_polyPressure {
+    /// 7 bit note number
+    pub noteNumber: u8,
+    /// 7 bit poly pressure data
+    pub pressure: u8,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MIDIUniversalMessage_anonymous_channelVoice1_anonymous_polyPressure {
+    const ENCODING: Encoding = Encoding::Struct("?", &[<u8>::ENCODING, <u8>::ENCODING]);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MIDIUniversalMessage_anonymous_channelVoice1_anonymous_polyPressure {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiuniversalmessage_anonymous_channelvoice1_anonymous_controlchange?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
+pub struct MIDIUniversalMessage_anonymous_channelVoice1_anonymous_controlChange {
+    /// 7 bit index of control parameter
+    pub index: u8,
+    /// 7 bit value for control parameter
+    pub data: u8,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MIDIUniversalMessage_anonymous_channelVoice1_anonymous_controlChange {
+    const ENCODING: Encoding = Encoding::Struct("?", &[<u8>::ENCODING, <u8>::ENCODING]);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MIDIUniversalMessage_anonymous_channelVoice1_anonymous_controlChange {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiuniversalmessage_anonymous_channelvoice1_anonymous?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub union MIDIUniversalMessage_anonymous_channelVoice1_anonymous {
+    /// active when status is kMIDICVStatusNoteOff or kMIDICVStatusNoteOn
+    pub note: MIDIUniversalMessage_anonymous_channelVoice1_anonymous_note,
+    /// active when status is kMIDICVStatusPolyPressure
+    pub polyPressure: MIDIUniversalMessage_anonymous_channelVoice1_anonymous_polyPressure,
+    /// active when status is kMIDICVStatusControlChange
+    pub controlChange: MIDIUniversalMessage_anonymous_channelVoice1_anonymous_controlChange,
+    /// 7 bit program nr, active when status is kMIDICVStatusProgramChange
+    pub program: u8,
+    /// 7 bit channel pressure, active when status is kMIDICVStatusChannelPressure
+    pub channelPressure: u8,
+    /// 7 bit pitch bend active when status is kMIDICVStatusPitchBend
+    pub pitchBend: u16,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MIDIUniversalMessage_anonymous_channelVoice1_anonymous {
+    const ENCODING: Encoding = Encoding::Union(
+        "?",
+        &[
+            <MIDIUniversalMessage_anonymous_channelVoice1_anonymous_note>::ENCODING,
+            <MIDIUniversalMessage_anonymous_channelVoice1_anonymous_polyPressure>::ENCODING,
+            <MIDIUniversalMessage_anonymous_channelVoice1_anonymous_controlChange>::ENCODING,
+            <u8>::ENCODING,
+            <u8>::ENCODING,
+            <u16>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MIDIUniversalMessage_anonymous_channelVoice1_anonymous {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiuniversalmessage_anonymous_channelvoice1?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct MIDIUniversalMessage_anonymous_channelVoice1 {
+    /// determines which variant is active
+    pub status: MIDICVStatus,
+    /// MIDI channel 0-15
+    pub channel: u8,
+    pub reserved: [u8; 3],
+    pub anonymous: MIDIUniversalMessage_anonymous_channelVoice1_anonymous,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MIDIUniversalMessage_anonymous_channelVoice1 {
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <MIDICVStatus>::ENCODING,
+            <u8>::ENCODING,
+            <[u8; 3]>::ENCODING,
+            <MIDIUniversalMessage_anonymous_channelVoice1_anonymous>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MIDIUniversalMessage_anonymous_channelVoice1 {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiuniversalmessage_anonymous_sysex?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
+pub struct MIDIUniversalMessage_anonymous_sysEx {
+    pub status: MIDISysExStatus,
+    /// MIDI channel 0-15
+    pub channel: u8,
+    /// SysEx data, 7 bit values
+    pub data: [u8; 6],
+    pub reserved: u8,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MIDIUniversalMessage_anonymous_sysEx {
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <MIDISysExStatus>::ENCODING,
+            <u8>::ENCODING,
+            <[u8; 6]>::ENCODING,
+            <u8>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MIDIUniversalMessage_anonymous_sysEx {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiuniversalmessage_anonymous_channelvoice2_anonymous_note?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
+pub struct MIDIUniversalMessage_anonymous_channelVoice2_anonymous_note {
+    /// 7 bit note number
+    pub number: u8,
+    /// attribute type
+    pub attributeType: MIDINoteAttribute,
+    /// note velocity
+    pub velocity: u16,
+    /// attribute data
+    pub attribute: u16,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MIDIUniversalMessage_anonymous_channelVoice2_anonymous_note {
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <u8>::ENCODING,
+            <MIDINoteAttribute>::ENCODING,
+            <u16>::ENCODING,
+            <u16>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MIDIUniversalMessage_anonymous_channelVoice2_anonymous_note {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiuniversalmessage_anonymous_channelvoice2_anonymous_polypressure?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
+pub struct MIDIUniversalMessage_anonymous_channelVoice2_anonymous_polyPressure {
+    /// 7 bit note number
+    pub noteNumber: u8,
+    pub reserved: u8,
+    /// pressure value
+    pub pressure: u32,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MIDIUniversalMessage_anonymous_channelVoice2_anonymous_polyPressure {
+    const ENCODING: Encoding =
+        Encoding::Struct("?", &[<u8>::ENCODING, <u8>::ENCODING, <u32>::ENCODING]);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MIDIUniversalMessage_anonymous_channelVoice2_anonymous_polyPressure {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiuniversalmessage_anonymous_channelvoice2_anonymous_controlchange?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
+pub struct MIDIUniversalMessage_anonymous_channelVoice2_anonymous_controlChange {
+    /// 7 bit controller number
+    pub index: u8,
+    pub reserved: u8,
+    /// controller value
+    pub data: u32,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MIDIUniversalMessage_anonymous_channelVoice2_anonymous_controlChange {
+    const ENCODING: Encoding =
+        Encoding::Struct("?", &[<u8>::ENCODING, <u8>::ENCODING, <u32>::ENCODING]);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MIDIUniversalMessage_anonymous_channelVoice2_anonymous_controlChange {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiuniversalmessage_anonymous_channelvoice2_anonymous_programchange?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
+pub struct MIDIUniversalMessage_anonymous_channelVoice2_anonymous_programChange {
+    pub options: MIDIProgramChangeOptions,
+    /// 7 bit program number
+    pub program: u8,
+    pub reserved: [u8; 2],
+    /// 14 bit bank
+    pub bank: u16,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MIDIUniversalMessage_anonymous_channelVoice2_anonymous_programChange {
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <MIDIProgramChangeOptions>::ENCODING,
+            <u8>::ENCODING,
+            <[u8; 2]>::ENCODING,
+            <u16>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MIDIUniversalMessage_anonymous_channelVoice2_anonymous_programChange {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiuniversalmessage_anonymous_channelvoice2_anonymous_channelpressure?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
+pub struct MIDIUniversalMessage_anonymous_channelVoice2_anonymous_channelPressure {
+    /// channel pressure data
+    pub data: u32,
+    pub reserved: [u8; 2],
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MIDIUniversalMessage_anonymous_channelVoice2_anonymous_channelPressure {
+    const ENCODING: Encoding = Encoding::Struct("?", &[<u32>::ENCODING, <[u8; 2]>::ENCODING]);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MIDIUniversalMessage_anonymous_channelVoice2_anonymous_channelPressure {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiuniversalmessage_anonymous_channelvoice2_anonymous_pitchbend?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
+pub struct MIDIUniversalMessage_anonymous_channelVoice2_anonymous_pitchBend {
+    /// pitch bend data
+    pub data: u32,
+    pub reserved: [u8; 2],
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MIDIUniversalMessage_anonymous_channelVoice2_anonymous_pitchBend {
+    const ENCODING: Encoding = Encoding::Struct("?", &[<u32>::ENCODING, <[u8; 2]>::ENCODING]);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MIDIUniversalMessage_anonymous_channelVoice2_anonymous_pitchBend {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiuniversalmessage_anonymous_channelvoice2_anonymous_pernotecontroller?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
+pub struct MIDIUniversalMessage_anonymous_channelVoice2_anonymous_perNoteController {
+    /// 7 bit note number
+    pub noteNumber: u8,
+    /// 7 bit controller number
+    pub index: u8,
+    /// controller data
+    pub data: u32,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MIDIUniversalMessage_anonymous_channelVoice2_anonymous_perNoteController {
+    const ENCODING: Encoding =
+        Encoding::Struct("?", &[<u8>::ENCODING, <u8>::ENCODING, <u32>::ENCODING]);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MIDIUniversalMessage_anonymous_channelVoice2_anonymous_perNoteController {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiuniversalmessage_anonymous_channelvoice2_anonymous_controller?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
+pub struct MIDIUniversalMessage_anonymous_channelVoice2_anonymous_controller {
+    /// 7 bit bank
+    pub bank: u8,
+    /// 7 bit controller number
+    pub index: u8,
+    /// controller data
+    pub data: u32,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MIDIUniversalMessage_anonymous_channelVoice2_anonymous_controller {
+    const ENCODING: Encoding =
+        Encoding::Struct("?", &[<u8>::ENCODING, <u8>::ENCODING, <u32>::ENCODING]);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MIDIUniversalMessage_anonymous_channelVoice2_anonymous_controller {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiuniversalmessage_anonymous_channelvoice2_anonymous_pernotepitchbend?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
+pub struct MIDIUniversalMessage_anonymous_channelVoice2_anonymous_perNotePitchBend {
+    /// 7 bit note number
+    pub noteNumber: u8,
+    pub reserved: u8,
+    /// per note pitch bend value
+    pub bend: u32,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MIDIUniversalMessage_anonymous_channelVoice2_anonymous_perNotePitchBend {
+    const ENCODING: Encoding =
+        Encoding::Struct("?", &[<u8>::ENCODING, <u8>::ENCODING, <u32>::ENCODING]);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MIDIUniversalMessage_anonymous_channelVoice2_anonymous_perNotePitchBend {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiuniversalmessage_anonymous_channelvoice2_anonymous_pernotemanagement?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
+pub struct MIDIUniversalMessage_anonymous_channelVoice2_anonymous_perNoteManagement {
+    /// 7 bit note number
+    pub note: u8,
+    pub options: MIDIPerNoteManagementOptions,
+    pub reserved: [u8; 4],
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MIDIUniversalMessage_anonymous_channelVoice2_anonymous_perNoteManagement {
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <u8>::ENCODING,
+            <MIDIPerNoteManagementOptions>::ENCODING,
+            <[u8; 4]>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MIDIUniversalMessage_anonymous_channelVoice2_anonymous_perNoteManagement {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiuniversalmessage_anonymous_channelvoice2_anonymous?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub union MIDIUniversalMessage_anonymous_channelVoice2_anonymous {
+    /// active when status is kMIDICVStatusNoteOff or kMIDICVStatusNoteOn
+    pub note: MIDIUniversalMessage_anonymous_channelVoice2_anonymous_note,
+    /// active when status is kMIDICVStatusPolyPressure
+    pub polyPressure: MIDIUniversalMessage_anonymous_channelVoice2_anonymous_polyPressure,
+    /// active when status is kMIDICVStatusControlChange
+    pub controlChange: MIDIUniversalMessage_anonymous_channelVoice2_anonymous_controlChange,
+    /// active when status is kMIDICVStatusProgramChange
+    pub programChange: MIDIUniversalMessage_anonymous_channelVoice2_anonymous_programChange,
+    /// active when status is kMIDICVStatusChannelPressure
+    pub channelPressure: MIDIUniversalMessage_anonymous_channelVoice2_anonymous_channelPressure,
+    /// active when status is kMIDICVStatusPitchBend
+    pub pitchBend: MIDIUniversalMessage_anonymous_channelVoice2_anonymous_pitchBend,
+    /// active when status is kMIDICVStatusRegisteredPNC or kMIDICVStatusAssignablePNC
+    pub perNoteController: MIDIUniversalMessage_anonymous_channelVoice2_anonymous_perNoteController,
+    /// active when status is any of kMIDICVStatusRegisteredControl, kMIDICVStatusAssignableControl, kMIDICVStatusRelRegisteredControl, or kMIDICVStatusRelAssignableControl
+    pub controller: MIDIUniversalMessage_anonymous_channelVoice2_anonymous_controller,
+    /// active when status is kMIDICVStatusPerNotePitchBend
+    pub perNotePitchBend: MIDIUniversalMessage_anonymous_channelVoice2_anonymous_perNotePitchBend,
+    /// active when status is kMIDICVStatusPerNoteMgmt
+    pub perNoteManagement: MIDIUniversalMessage_anonymous_channelVoice2_anonymous_perNoteManagement,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MIDIUniversalMessage_anonymous_channelVoice2_anonymous {
+    const ENCODING: Encoding = Encoding::Union(
+        "?",
+        &[
+            <MIDIUniversalMessage_anonymous_channelVoice2_anonymous_note>::ENCODING,
+            <MIDIUniversalMessage_anonymous_channelVoice2_anonymous_polyPressure>::ENCODING,
+            <MIDIUniversalMessage_anonymous_channelVoice2_anonymous_controlChange>::ENCODING,
+            <MIDIUniversalMessage_anonymous_channelVoice2_anonymous_programChange>::ENCODING,
+            <MIDIUniversalMessage_anonymous_channelVoice2_anonymous_channelPressure>::ENCODING,
+            <MIDIUniversalMessage_anonymous_channelVoice2_anonymous_pitchBend>::ENCODING,
+            <MIDIUniversalMessage_anonymous_channelVoice2_anonymous_perNoteController>::ENCODING,
+            <MIDIUniversalMessage_anonymous_channelVoice2_anonymous_controller>::ENCODING,
+            <MIDIUniversalMessage_anonymous_channelVoice2_anonymous_perNotePitchBend>::ENCODING,
+            <MIDIUniversalMessage_anonymous_channelVoice2_anonymous_perNoteManagement>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MIDIUniversalMessage_anonymous_channelVoice2_anonymous {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiuniversalmessage_anonymous_channelvoice2?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct MIDIUniversalMessage_anonymous_channelVoice2 {
+    /// determines which variant is active
+    pub status: MIDICVStatus,
+    /// MIDI channel
+    pub channel: u8,
+    pub reserved: [u8; 3],
+    pub anonymous: MIDIUniversalMessage_anonymous_channelVoice2_anonymous,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MIDIUniversalMessage_anonymous_channelVoice2 {
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <MIDICVStatus>::ENCODING,
+            <u8>::ENCODING,
+            <[u8; 3]>::ENCODING,
+            <MIDIUniversalMessage_anonymous_channelVoice2_anonymous>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MIDIUniversalMessage_anonymous_channelVoice2 {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiuniversalmessage_anonymous_data128_anonymous_sysex8?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
+pub struct MIDIUniversalMessage_anonymous_data128_anonymous_sysex8 {
+    /// byte count of data including stream ID (1-14 bytes)
+    pub byteCount: u8,
+    pub streamID: u8,
+    pub data: [u8; 13],
+    pub reserved: u8,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MIDIUniversalMessage_anonymous_data128_anonymous_sysex8 {
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <u8>::ENCODING,
+            <u8>::ENCODING,
+            <[u8; 13]>::ENCODING,
+            <u8>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MIDIUniversalMessage_anonymous_data128_anonymous_sysex8 {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiuniversalmessage_anonymous_data128_anonymous_mixeddataset?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
+pub struct MIDIUniversalMessage_anonymous_data128_anonymous_mixedDataSet {
+    /// mixed data set ID
+    pub mdsID: u8,
+    pub data: [u8; 14],
+    pub reserved: u8,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MIDIUniversalMessage_anonymous_data128_anonymous_mixedDataSet {
+    const ENCODING: Encoding =
+        Encoding::Struct("?", &[<u8>::ENCODING, <[u8; 14]>::ENCODING, <u8>::ENCODING]);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MIDIUniversalMessage_anonymous_data128_anonymous_mixedDataSet {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiuniversalmessage_anonymous_data128_anonymous?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub union MIDIUniversalMessage_anonymous_data128_anonymous {
+    /// active when status any of kMIDISysExStatusComplete, kMIDISysExStatusStart, kMIDISysExStatusContinue, or kMIDISysExStatusEnd
+    pub sysex8: MIDIUniversalMessage_anonymous_data128_anonymous_sysex8,
+    /// active when status is kMIDISysExStatusMixedDataSetHeader or kMIDISysExStatusMixedDataSetPayload
+    pub mixedDataSet: MIDIUniversalMessage_anonymous_data128_anonymous_mixedDataSet,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MIDIUniversalMessage_anonymous_data128_anonymous {
+    const ENCODING: Encoding = Encoding::Union(
+        "?",
+        &[
+            <MIDIUniversalMessage_anonymous_data128_anonymous_sysex8>::ENCODING,
+            <MIDIUniversalMessage_anonymous_data128_anonymous_mixedDataSet>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MIDIUniversalMessage_anonymous_data128_anonymous {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiuniversalmessage_anonymous_data128?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub struct MIDIUniversalMessage_anonymous_data128 {
+    /// determines which variant is active
+    pub status: MIDISysExStatus,
+    pub anonymous: MIDIUniversalMessage_anonymous_data128_anonymous,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MIDIUniversalMessage_anonymous_data128 {
+    const ENCODING: Encoding = Encoding::Struct(
+        "?",
+        &[
+            <MIDISysExStatus>::ENCODING,
+            <MIDIUniversalMessage_anonymous_data128_anonymous>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MIDIUniversalMessage_anonymous_data128 {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiuniversalmessage_anonymous_unknown?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy, Debug, PartialEq, Default)]
+pub struct MIDIUniversalMessage_anonymous_unknown {
+    /// up to four 32 bit words
+    pub words: [u32; 4],
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MIDIUniversalMessage_anonymous_unknown {
+    const ENCODING: Encoding = Encoding::Struct("?", &[<[u32; 4]>::ENCODING]);
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MIDIUniversalMessage_anonymous_unknown {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
+/// [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiuniversalmessage_anonymous?language=objc)
+#[repr(C)]
+#[derive(Clone, Copy)]
+pub union MIDIUniversalMessage_anonymous {
+    /// active when type is kMIDIMessageTypeUtility
+    pub utility: MIDIUniversalMessage_anonymous_utility,
+    /// active when type is kMIDIMessageTypeSystem
+    pub system: MIDIUniversalMessage_anonymous_system,
+    /// active when type is kMIDIMessageTypeChannelVoice1
+    pub channelVoice1: MIDIUniversalMessage_anonymous_channelVoice1,
+    /// active when type is kMIDIMessageTypeSysEx
+    pub sysEx: MIDIUniversalMessage_anonymous_sysEx,
+    /// active when type is kMIDIMessageTypeChannelVoice2
+    pub channelVoice2: MIDIUniversalMessage_anonymous_channelVoice2,
+    /// active when type is kMIDIMessageTypeData128
+    pub data128: MIDIUniversalMessage_anonymous_data128,
+    /// active when type is unkown
+    pub unknown: MIDIUniversalMessage_anonymous_unknown,
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl Encode for MIDIUniversalMessage_anonymous {
+    const ENCODING: Encoding = Encoding::Union(
+        "?",
+        &[
+            <MIDIUniversalMessage_anonymous_utility>::ENCODING,
+            <MIDIUniversalMessage_anonymous_system>::ENCODING,
+            <MIDIUniversalMessage_anonymous_channelVoice1>::ENCODING,
+            <MIDIUniversalMessage_anonymous_sysEx>::ENCODING,
+            <MIDIUniversalMessage_anonymous_channelVoice2>::ENCODING,
+            <MIDIUniversalMessage_anonymous_data128>::ENCODING,
+            <MIDIUniversalMessage_anonymous_unknown>::ENCODING,
+        ],
+    );
+}
+
+#[cfg(feature = "objc2")]
+unsafe impl RefEncode for MIDIUniversalMessage_anonymous {
+    const ENCODING_REF: Encoding = Encoding::Pointer(&Self::ENCODING);
+}
+
 /// A representation of all possible messages stored in a Universal MIDI packet.
 ///
 /// See also [Apple's documentation](https://developer.apple.com/documentation/coremidi/midiuniversalmessage?language=objc)
 #[repr(C)]
-#[derive(Clone, Copy, Debug, PartialEq, Default)]
+#[derive(Clone, Copy)]
 pub struct MIDIUniversalMessage {
     /// determines which variant in the union is active
     pub r#type: MIDIMessageType,
     /// 4 bit MIDI group
     pub group: u8,
     pub reserved: [u8; 3],
+    pub anonymous: MIDIUniversalMessage_anonymous,
 }
 
 #[cfg(feature = "objc2")]
@@ -688,6 +1419,7 @@ unsafe impl Encode for MIDIUniversalMessage {
             <MIDIMessageType>::ENCODING,
             <u8>::ENCODING,
             <[u8; 3]>::ENCODING,
+            <MIDIUniversalMessage_anonymous>::ENCODING,
         ],
     );
 }
